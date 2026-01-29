@@ -1,7 +1,6 @@
 Sub xtab_to_table()
 
-    a = ActiveWorkbook.Name
-    If a = "Crosstab Converter.xlsm" Then 'ensures this workbook is active before running macro to ensure other workkbooks are unaffected
+    If ActiveWorkbook.Name = ThisWorkbook.Name Then
         'ensure data is formatted so first row is headers
         rowz = Cells(1, 1).CurrentRegion.Rows.Count ' total row count including header
         startcol = 3 'first column to be data
