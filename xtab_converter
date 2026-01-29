@@ -4,8 +4,8 @@ Sub xtab_to_table()
     If a = "Crosstab Converter.xlsm" Then 'ensures this workbook is active before running macro to ensure other workkbooks are unaffected
         'ensure data is formatted so first row is headers
         rowz = Cells(1, 1).CurrentRegion.Rows.Count ' total row count including header
-        startcol = 3 'first column to be data - crew sales = 6
-        finalcol = 109 'last column to be data - crew sales = 47
+        startcol = 3 'first column to be data
+        finalcol = 109 'last column to be data
         newrowz = rowz * (finalcol - startcol + 1)
         counterz = 1
         ReDim mydata(1 To (newrowz - 1), 1 To (startcol + 1))
