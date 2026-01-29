@@ -1,0 +1,31 @@
+Sub xtab_to_table()
+
+    a = ActiveWorkbook.Name
+    If a = "Crosstab Converter.xlsm" Then 'ensures this workbook is active before running macro to ensure other workkbooks are unaffected
+        'ensure data is formatted so first row is headers
+        rowz = Cells(1, 1).CurrentRegion.Rows.Count ' total row count including header
+        startcol = 3 'first column to be data - crew sales = 6
+        finalcol = 109 'last column to be data - crew sales = 47
+        newrowz = rowz * (finalcol - startcol + 1)
+        counterz = 1
+        ReDim mydata(1 To (newrowz - 1), 1 To (startcol + 1))
+        For n = 2 To rowz
+            For x = startcol To finalcol
+                cellval = Cells(n, x).Value
+                If cellval <> False Then
+                    mydata(counterz, (startcol + 1)) = cellval
+                    mydata(counterz, startcol) = Cells(1, x).Value
+                    For a = 1 To (startcol - 1)
+                        mydata(counterz, a) = Cells(n, a).Value
+                    Next a
+                    counterz = counterz + 1
+                End If
+            Next x
+        Next n
+        Workbooks.Add
+        Range(Cells(2, 1), Cells(counterz + 1, startcol + 1)) = mydata
+    Else
+        MsgBox ("Please ensure the correct workbook is selected")
+    End If
+    
+End Sub
